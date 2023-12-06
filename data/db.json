@@ -8,7 +8,7 @@
     },
     {
       "id": 2,
-      "name": "phone",
+      "name": "phone 13",
       "price": 3000,
       "checked": true
     },
@@ -21,14 +21,32 @@
     {
       "name": "toto",
       "price": "567",
-      "checked": false,
+      "checked": true,
       "id": 4
     },
     {
       "name": "hjkj",
       "price": "hjk",
-      "checked": true,
+      "checked": false,
       "id": 5
+    },
+    {
+      "name": "a",
+      "price": "100",
+      "checked": true,
+      "id": 6
+    },
+    {
+      "name": "a",
+      "price": "100",
+      "checked": true,
+      "id": 7
+    },
+    {
+      "name": "a",
+      "price": "100",
+      "checked": true,
+      "id": 8
     }
   ]
 }

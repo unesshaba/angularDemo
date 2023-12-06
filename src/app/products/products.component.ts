@@ -3,6 +3,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -11,13 +12,15 @@ import {Observable} from "rxjs";
 })
 export class ProductsComponent implements  OnInit{
 
-  constructor(  private productService:ProductService) {
+  constructor(  private productService:ProductService,private router:Router) {
 
   }
   public keyword:string="";
-  products:Array<Product>=[
+  public products:Array<Product>=[];
+  totalPages:number=0;
+  pageSize :number=2;
+  currentPage:number=1;
 
-    ]
 
   handleCheckProduct(product: Product) {
  this.productService.checkProduct(product)
@@ -35,9 +38,16 @@ export class ProductsComponent implements  OnInit{
     // product.checked=!product.checked;
   }
   getProducts(){
- this.productService.getProducts(2,3)
+ this.productService.getProducts(this.keyword,this.currentPage,this.pageSize)
     .subscribe({
-      next:data => this.products=data,
+      next:(resp) => {this.products=resp.body as Product[];
+      let totalProducts:number=parseInt(resp.headers.get('x-total-count')!);
+       console.log(totalProducts);
+       this.totalPages=Math.floor(totalProducts/this.pageSize);
+       if (totalProducts %this.pageSize!=0 ){
+         this.totalPages=this.totalPages+1;
+       }
+        },
       error:err => {
         console.log(err);
       }
@@ -61,13 +71,25 @@ export class ProductsComponent implements  OnInit{
   )
   }
 
-  searchProduct() {
-this.productService.searchProduct(this.keyword).subscribe(
-  {
-    next:value => {
-      this.products=value;
-    }
+//   searchProduct() {
+//     this.currentPage=1;
+//     this.totalPages=0;
+// this.productService.searchProduct(this.keyword,this.currentPage,this.pageSize).subscribe(
+//   {
+//     next:value => {
+//       this.products=value;
+//     }
+//   }
+// )
+//   }
+
+  handleGotoPage(page:number) {
+    this.currentPage=page;
+    this.getProducts();
   }
-)
+
+  handleEdit(product: Product) {
+  this.router.navigateByUrl(`/editProduct/${product.id}`)
+
   }
 }
