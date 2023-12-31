@@ -4,6 +4,7 @@ import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {AppStateService} from "../services/app-state.service";
 
 @Component({
   selector: 'app-products',
@@ -12,14 +13,10 @@ import {Router} from "@angular/router";
 })
 export class ProductsComponent implements  OnInit{
 
-  constructor(  private productService:ProductService,private router:Router) {
+  constructor(  private productService:ProductService,private router:Router,public appState:AppStateService) {
 
   }
-  public keyword:string="";
-  public products:Array<Product>=[];
-  totalPages:number=0;
-  pageSize :number=2;
-  currentPage:number=1;
+
 
 
   handleCheckProduct(product: Product) {
@@ -38,18 +35,37 @@ export class ProductsComponent implements  OnInit{
     // product.checked=!product.checked;
   }
   getProducts(){
- this.productService.getProducts(this.keyword,this.currentPage,this.pageSize)
+    // this.appState.setProductState({
+    //   status:"LOADING"
+    // });
+ this.productService.getProducts(this.appState.productState.keyword,this.appState.productState.currentPage,this.appState.productState.pageSize)
     .subscribe({
-      next:(resp) => {this.products=resp.body as Product[];
+      next:(resp) => {
+        let products=resp.body as Product[];
+       //  this.appState.productState.products=resp.body as Product[];
       let totalProducts:number=parseInt(resp.headers.get('x-total-count')!);
-       console.log(totalProducts);
-       this.totalPages=Math.floor(totalProducts/this.pageSize);
-       if (totalProducts %this.pageSize!=0 ){
-         this.totalPages=this.totalPages+1;
+        //this.appState.productState.totalProducts=totalProducts;
+      // console.log(totalProducts);
+       // this.appState.productState.totalPages=
+        let totalPages=
+         Math.floor(totalProducts/this.appState.productState.pageSize);
+       if (totalProducts %this.appState.productState.pageSize!=0 ){
+         ++totalPages;
        }
+        this.appState.setProductState({
+          products :products,
+          totalProducts :totalProducts,
+          totalPages :totalPages,
+           status :"LOADED"
+        })
+
         },
       error:err => {
-        console.log(err);
+        this.appState.setProductState({
+          status:"ERROR",
+          errorMessage:err
+        })
+        // console.log(err);
       }
     })
   // this.products$=this.productService.getProducts();
@@ -63,8 +79,8 @@ export class ProductsComponent implements  OnInit{
     if(confirm("Etes vous sure?"))
   this.productService.deleteProduct(product).subscribe(
     {next:value=>{
-     // this.getProducts();
-        this.products=this.products.filter(p=>p.id!=product.id)
+      this.getProducts();
+        //this.appState.productState.products=this.appState.productState.products.filter((p: any)=>p.id!=product.id)
 
       }
     }
@@ -84,12 +100,12 @@ export class ProductsComponent implements  OnInit{
 //   }
 
   handleGotoPage(page:number) {
-    this.currentPage=page;
+    this.appState.productState.currentPage=page;
     this.getProducts();
   }
 
   handleEdit(product: Product) {
-  this.router.navigateByUrl(`/editProduct/${product.id}`)
+  this.router.navigateByUrl(`/admin/editProduct/${product.id}`)
 
   }
 }

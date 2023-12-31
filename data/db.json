@@ -1,9 +1,15 @@
 {
+  "users": [
+    {
+      "username": "user1",
+      "password": "12345"
+    }
+  ],
   "products": [
     {
       "id": 1,
-      "name": "computer",
-      "price": 5600,
+      "name": "computer 12",
+      "price": "560009",
       "checked": true
     },
     {
@@ -34,19 +40,25 @@
       "name": "a",
       "price": "100",
       "checked": true,
-      "id": 6
-    },
-    {
-      "name": "a",
-      "price": "100",
-      "checked": true,
       "id": 7
     },
     {
-      "name": "a",
-      "price": "100",
-      "checked": true,
-      "id": 8
+      "name": "tt",
+      "price": "567",
+      "checked": false,
+      "id": 9
+    },
+    {
+      "name": "mouad",
+      "price": "78788",
+      "checked": false,
+      "id": 10
+    },
+    {
+      "name": "h",
+      "price": "88",
+      "checked": false,
+      "id": 11
     }
   ]
 }

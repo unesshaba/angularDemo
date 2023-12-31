@@ -1,0 +1,21 @@
+<div class="p-3">
+  <div class="card">
+    <div class="card-header">Authentification</div>
+    <div class="card-body">
+      <form  [formGroup]="formLogin" class="login-form" (ngSubmit)="handleLogin()">
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input type="text" placeholder="username" class="form-control" formControlName="username"/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" placeholder="password"  formControlName="password"
+                 class="form-control"/>
+        </div>
+        <button class=" btn btn-success">login</button>
+        <p class="message">Not registered? <a href="#">Create an account</a></p>
+
+      </form>
+    </div>
+  </div>
+</div>
