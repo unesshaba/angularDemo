@@ -20,17 +20,17 @@
        <tr *ngFor="let product of appState.productState.products ">
          <td>{{product.name}}</td>
          <td>{{product.price}}</td>
-         <td>
+         <td  *ngIf="this.appState.authState.roles.includes('ADMIN')">
            <button (click)="handleCheckProduct(product)"class="btn btn-outline-success">
              <i [class]="product.checked ? 'bi-toggle-on' :'bi-toggle-off'"></i>
            </button>
          </td>
-         <td>
+         <td *ngIf="this.appState.authState.roles.includes('ADMIN')">
            <button (click)="handleDelete(product)"class="btn btn-outline-danger">
              <i class="bi bi-trash"></i>
            </button>
          </td>
-         <td>
+         <td  *ngIf="this.appState.authState.roles.includes('ADMIN')">
            <button (click)="handleEdit(product)"class="btn btn-outline-danger">
              <i class="bi bi-pencil"></i>
            </button>

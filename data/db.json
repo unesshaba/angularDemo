@@ -1,8 +1,29 @@
 {
   "users": [
     {
-      "username": "user1",
-      "password": "12345"
+      "id": "user1",
+      "password": "MTIzNDU=",
+      "roles": [
+        "USER"
+      ],
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMSIsImV4cCI6MTUxNjIzOTAyLCJpYXQiOjE1MTYyMzkwMjIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODg4OC9hdXRoIiwibmJmIjoxNTE2MjM5MDIsImZpcnN0bmFtZSI6InlvdW5lc3MiLCJsYXN0bmFtZSI6ImFpdGhhYmEiLCJlbWFpbCI6InlvdW5lc3NhaXRoYWJhQGdtYWlsLmNvbSIsInJvbGVzIjpbIlVTRVIiXX0.xBjkcE7ReJ5JaIFfRy780BqWu-TCqlOtUzVZK41kYtc"
+    },
+    {
+      "id": "user2",
+      "password": "MTIzNDU=",
+      "roles": [
+        "USER"
+      ],
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMiIsImV4cCI6MTUxNjIzOTAyLCJpYXQiOjE1MTYyMzkwMjIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODg4OC9hdXRoIiwibmJmIjoxNTE2MjM5MDIsImZpcnN0bmFtZSI6InlvdW5lc3MiLCJsYXN0bmFtZSI6ImFpdGhhYmEiLCJlbWFpbCI6InlvdW5lc3NhaXRoYWJhQGdtYWlsLmNvbSIsInJvbGVzIjpbIlVTRVIiXX0.0oqYaaTVs52R5U_o6faUHZm40ijuQ0cHxEc1QkhuIxc"
+    },
+    {
+      "id": "admin",
+      "password": "MTIzNA==",
+      "roles": [
+        "USER",
+        "ADMIN"
+      ],
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTUxNjIzOTAyLCJpYXQiOjE1MTYyMzkwMjIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODg4OC9hdXRoIiwibmJmIjoxNTE2MjM5MDIsImZpcnN0bmFtZSI6InlvdW5lc3MiLCJsYXN0bmFtZSI6ImFpdGhhYmEiLCJlbWFpbCI6InlvdW5lc3NhaXRoYWJhQGdtYWlsLmNvbSIsInJvbGVzIjpbIlVTRVIiLCJBRE1JTiJdfQ.gG6Gtr47vpnsxhX1fO_JM5r25f7D0XUpG28iCLeet2M"
     }
   ],
   "products": [
@@ -25,10 +46,10 @@
       "checked": false
     },
     {
+      "id": 4,
       "name": "toto",
-      "price": "567",
-      "checked": true,
-      "id": 4
+      "price": "5670",
+      "checked": true
     },
     {
       "name": "hjkj",
